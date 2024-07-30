@@ -29,25 +29,15 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
             width: 100%;
-            max-width: 800px;
+            max-width: 600px;
         }
         h1 {
             color: #3366cc;
             text-align: center;
             margin-bottom: 20px;
         }
-        .translation-area {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        @media (min-width: 768px) {
-            .translation-area {
-                flex-direction: row;
-            }
-        }
         .translation-box {
-            flex: 1;
+            margin-bottom: 20px;
         }
         label {
             display: block;
@@ -88,27 +78,25 @@
 <body>
     <div class="container">
         <h1>Quick Translate</h1>
-        <div class="translation-area">
-            <div class="translation-box">
-                <label for="sourceLanguage">Source Language</label>
-                <select id="sourceLanguage">
-                    <option value="en">English</option>
-                    <option value="es">Spanish</option>
-                </select>
-                <textarea id="sourceText" placeholder="Enter text here"></textarea>
-            </div>
-            <div class="translation-box">
-                <label for="targetLanguage">Target Language</label>
-                <select id="targetLanguage">
-                    <option value="es">Spanish</option>
-                    <option value="en">English</option>
-                </select>
-                <textarea id="targetText" placeholder="Translation will appear here" readonly></textarea>
-            </div>
+        <div class="translation-box">
+            <label for="sourceLanguage">Source Language</label>
+            <select id="sourceLanguage">
+                <option value="en">English</option>
+                <option value="es">Spanish</option>
+            </select>
+            <textarea id="sourceText" placeholder="Enter text here"></textarea>
         </div>
         <button id="translateBtn">Translate</button>
+        <div class="translation-box">
+            <label for="targetLanguage">Target Language</label>
+            <select id="targetLanguage">
+                <option value="es">Spanish</option>
+                <option value="en">English</option>
+            </select>
+            <textarea id="targetText" placeholder="Translation will appear here" readonly></textarea>
+        </div>
     </div>
-    <p class="footer">Fast, free, and easy bidirectional English-Spanish translation.</p>
+    <p class="footer">Fast, free, and easy English-Spanish translation.</p>
 
     <script>
         const sourceLanguage = document.getElementById('sourceLanguage');
