@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Bidirectional Translate</title>
+    <title>Stylish Bidirectional Translate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-10983227830"></script>
     <script>
@@ -13,23 +14,34 @@
       gtag('config', 'AW-10983227830');
     </script>
 </head>
-<body>
-    <h1>Simple Bidirectional Translate</h1>
-    <div>
-        <select id="sourceLanguage">
-            <option value="en">English</option>
-            <option value="es">Spanish</option>
-        </select>
-        <textarea id="sourceText" rows="4" placeholder="Enter text here"></textarea>
+<body class="bg-gradient-to-r from-blue-100 to-purple-100 min-h-screen font-sans">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-600">Stylish Bidirectional Translate</h1>
+        <div class="max-w-4xl mx-auto bg-white p-8 rounded-lg shadow-lg">
+            <div class="flex flex-col md:flex-row gap-6 mb-6">
+                <div class="flex-1">
+                    <label for="sourceLanguage" class="block text-sm font-medium text-gray-700 mb-1">Source Language</label>
+                    <select id="sourceLanguage" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                    </select>
+                    <textarea id="sourceText" rows="6" class="mt-2 w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500" placeholder="Enter text here"></textarea>
+                </div>
+                <div class="flex-1">
+                    <label for="targetLanguage" class="block text-sm font-medium text-gray-700 mb-1">Target Language</label>
+                    <select id="targetLanguage" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="es">Spanish</option>
+                        <option value="en">English</option>
+                    </select>
+                    <textarea id="targetText" rows="6" class="mt-2 w-full p-3 border border-gray-300 rounded-md bg-gray-50" placeholder="Translation will appear here" readonly></textarea>
+                </div>
+            </div>
+            <button id="translateBtn" class="w-full bg-blue-500 text-white py-3 px-6 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-lg">
+                Translate
+            </button>
+        </div>
+        <p class="text-center mt-6 text-gray-600">Fast, free, and easy bidirectional English-Spanish translation.</p>
     </div>
-    <div>
-        <select id="targetLanguage">
-            <option value="es">Spanish</option>
-            <option value="en">English</option>
-        </select>
-        <textarea id="targetText" rows="4" placeholder="Translation will appear here" readonly></textarea>
-    </div>
-    <button id="translateBtn">Translate</button>
 
     <script>
         const sourceLanguage = document.getElementById('sourceLanguage');
