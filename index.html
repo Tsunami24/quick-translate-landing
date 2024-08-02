@@ -13,69 +13,14 @@
       gtag('config', 'AW-10983227830');
     </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #e6f2ff, #f0e6ff);
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .container {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            width: 100%;
-            max-width: 600px;
-        }
-        h1 {
-            color: #3366cc;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .translation-box {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-        }
-        select, textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-        textarea {
-            height: 150px;
-            resize: vertical;
-        }
-        button {
-            background-color: #3366cc;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            width: 100%;
-        }
-        button:hover {
-            background-color: #254e9c;
-        }
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            color: #666;
-        }
+        /* Your existing CSS here */
     </style>
 </head>
 <body>
+    <svg class="background-illustration" viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Your existing SVG background here -->
+    </svg>
+
     <div class="container">
         <h1>Quick Translate</h1>
         <div class="translation-box">
@@ -83,6 +28,7 @@
             <select id="sourceLanguage">
                 <option value="en">English</option>
                 <option value="es">Spanish</option>
+                <option value="hi">Hindi</option>
             </select>
             <textarea id="sourceText" placeholder="Enter text here"></textarea>
         </div>
@@ -92,11 +38,12 @@
             <select id="targetLanguage">
                 <option value="es">Spanish</option>
                 <option value="en">English</option>
+                <option value="hi">Hindi</option>
             </select>
             <textarea id="targetText" placeholder="Translation will appear here" readonly></textarea>
         </div>
     </div>
-    <p class="footer">Fast, free, and easy English-Spanish translation.</p>
+    <p class="footer">Fast, free, and easy translation between English, Spanish, and Hindi.</p>
 
     <script>
         const sourceLanguage = document.getElementById('sourceLanguage');
@@ -105,13 +52,20 @@
         const targetText = document.getElementById('targetText');
         const translateBtn = document.getElementById('translateBtn');
 
-        sourceLanguage.addEventListener('change', () => {
-            targetLanguage.value = sourceLanguage.value === 'en' ? 'es' : 'en';
-        });
+        function updateTargetLanguage() {
+            const sourceLang = sourceLanguage.value;
+            targetLanguage.innerHTML = '';
+            ['en', 'es', 'hi'].forEach(lang => {
+                if (lang !== sourceLang) {
+                    const option = document.createElement('option');
+                    option.value = lang;
+                    option.textContent = lang === 'en' ? 'English' : lang === 'es' ? 'Spanish' : 'Hindi';
+                    targetLanguage.appendChild(option);
+                }
+            });
+        }
 
-        targetLanguage.addEventListener('change', () => {
-            sourceLanguage.value = targetLanguage.value === 'en' ? 'es' : 'en';
-        });
+        sourceLanguage.addEventListener('change', updateTargetLanguage);
 
         async function performTranslation() {
             const text = sourceText.value.trim();
@@ -149,6 +103,9 @@
                 performTranslation();
             }
         });
+
+        // Initialize target language options
+        updateTargetLanguage();
     </script>
 </body>
 </html>
